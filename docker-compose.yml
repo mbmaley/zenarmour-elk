@@ -1,5 +1,12 @@
 version: '3.7'
 
+deploy:
+  resources:
+    limits:
+      cpus: '1'
+      memory: 2000M
+
+
 services:
 
   # The 'setup' service runs a one-off script which initializes users inside
