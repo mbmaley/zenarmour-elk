@@ -73,6 +73,11 @@ services:
     restart: unless-stopped
 
   logstash:
+    deploy: 
+      resources: 
+        limits: 
+          cpus: '0.5' 
+          memory: '1024M'     
     build:
       context: logstash/
       args:
@@ -92,14 +97,14 @@ services:
       - elk
     depends_on:
       - elasticsearch
-    restart: unless-stopped
-  deploy: 
-    resources: 
-      limits: 
-        cpus: '0.5' 
-        memory: '1024M'         
+    restart: unless-stopped    
 
   kibana:
+    deploy: 
+      resources: 
+        limits: 
+          cpus: '0.5' 
+          memory: '1024M' 
     build:
       context: kibana/
       args:
@@ -114,12 +119,7 @@ services:
       - elk
     depends_on:
       - elasticsearch
-    restart: unless-stopped
-  deploy: 
-    resources: 
-      limits: 
-        cpus: '0.5' 
-        memory: '1024M'    
+    restart: unless-stopped   
 
 networks:
   elk:
